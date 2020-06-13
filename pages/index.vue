@@ -13,12 +13,6 @@
       </b-row>
     </b-container>
     <b-button variant="success" @click="test">CLICK</b-button> <span style="color: white;"></span>
-    <button v-on:click="show = !show">
-      Toggle
-    </button>
-    <transition name="pade">
-      <p v-if="show">hello</p>
-    </transition>
   </div>
 </template>
 
@@ -27,7 +21,6 @@ export default {
   data() {
     return {
       data: null,
-      show: true,
     }
   },
   methods: {
@@ -38,12 +31,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.pade-enter-active,
-.pade-leave-active {
-  transition: transform 5.5s;
-}
-.pade-enter, .pade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  transform: translateX(-100%);
-}
-</style>
+<style lang="scss"></style>

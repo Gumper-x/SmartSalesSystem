@@ -1,10 +1,10 @@
 <template>
   <section>
     <transition name="moveLeft">
-      <Sidebar v-if="sidebarStatus" :offset="sidebarOffset" />
+      <Sidebar v-show="sidebarStatus" :offset="sidebarOffset" />
     </transition>
     <transition name="opacityHide">
-      <div v-if="sidebarStatus" class="area-nonaside h-100 w-100" @click="$store.commit('sidebarToggle')"></div>
+      <div v-show="sidebarStatus" class="area-nonaside h-100 w-100" @click="$store.commit('sidebarToggle')"></div>
     </transition>
     <header ref="header" class="fixed-top p-2 d-flex align-items-center justify-content-between">
       <div class="d-flex">
@@ -53,12 +53,12 @@ export default {
   components: {
     Sidebar,
   },
-  computed: mapState(["sidebarStatus"]),
   data() {
     return {
       sidebarOffset: null,
     }
   },
+  computed: mapState(["sidebarStatus"]),
   watch: {
     sidebarStatus(val) {
       if (window.innerWidth <= 900 && val === true) {

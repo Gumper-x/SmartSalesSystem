@@ -37,14 +37,14 @@
       </div>
       <nav class="p-2">
         <ul>
-          <li class="droplist" :class="{ active: elem.active }" v-for="(elem, index) in menuMap" :key="index" @click="elem.active = !elem.active">
+          <li v-for="(elem, Index) in menuMap" :key="Index" :class="{ active: elem.active }" class="droplist" @click="elem.active = !elem.active">
             <div class="title">
               <span class="d-flex" :class="elem.iconClass">{{ elem.title }}</span>
             </div>
             <b-collapse v-model="elem.active">
               <ul>
                 <li v-for="(elemChild, index) in elem.childs" :key="index">
-                  <nuxt-link :to="elemChild.url" ref="title">{{ elemChild.name }}</nuxt-link>
+                  <nuxt-link ref="title" :to="elemChild.url">{{ elemChild.name }}</nuxt-link>
                 </li>
               </ul>
             </b-collapse>
@@ -194,6 +194,11 @@ export default {
       }
     }
   },
+  beforeDestroy() {
+    for (const link of this.$refs.title) {
+      link.$el.removeEventListener("click", this.closeSiderbar)
+    }
+  },
   methods: {
     closeAllList() {
       if (
@@ -219,11 +224,6 @@ export default {
     closeSiderbar() {
       this.$store.commit("sidebarToggle")
     },
-  },
-  beforeDestroy() {
-    for (const link of this.$refs.title) {
-      link.$el.removeEventListener("click", this.closeSiderbar)
-    }
   },
 }
 </script>

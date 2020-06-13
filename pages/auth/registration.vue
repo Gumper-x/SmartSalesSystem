@@ -1,10 +1,10 @@
 <template>
   <ul>
     <li v-for="todo in todos" :key="todo.text">
-      <input :checked="todo.done" @change="toggle(todo)" type="checkbox" />
+      <input type="checkbox" :checked="todo.done" @change="toggle(todo)" />
       <span :class="{ done: todo.done }">{{ todo.text }}</span>
     </li>
-    <li><input @keyup.enter="addTodo" placeholder="What needs to be done?" /></li>
+    <li><input placeholder="What needs to be done?" @keyup.enter="addTodo" /></li>
   </ul>
 </template>
 
