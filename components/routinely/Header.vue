@@ -1,8 +1,6 @@
 <template>
   <section>
-    <transition name="moveLeft">
-      <Sidebar v-show="sidebarStatus" :offset="sidebarOffset" />
-    </transition>
+    <Sidebar :offset="sidebarOffset" :class="{ hide: !sidebarStatus }" class="aside" />
     <transition name="opacityHide">
       <div v-show="sidebarStatus" class="area-nonaside h-100 w-100" @click="$store.commit('sidebarToggle')"></div>
     </transition>
@@ -79,14 +77,13 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  .moveLeft-enter-active,
-  .moveLeft-leave-active {
+  .aside {
     transition: transform 0.3s ease-in-out;
+    &.hide {
+      transform: translateX(-100%);
+    }
   }
-  .moveLeft-enter,
-  .moveLeft-leave-to {
-    transform: translateX(-100%);
-  }
+
   .opacityHide-enter-active,
   .opacityHide-leave-active {
     transition: opacity 0.3s ease-in-out;
