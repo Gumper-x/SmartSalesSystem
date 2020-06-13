@@ -2,7 +2,7 @@
   <aside class="h-100" :style="offset">
     <section class="navigation">
       <div class="header-aside d-flex justify-content-start pt-1 pb-1 pr-2 pl-2">
-        <b-button size="sm" variant="light" class="mr-1">
+        <b-button size="sm" variant="light" class="mr-1" ref="headerButton">
           <b-link to="/" class="icon-home"></b-link>
         </b-button>
         <b-button size="sm" variant="light" @click="closeAllList">
@@ -189,6 +189,7 @@ export default {
   },
   mounted() {
     if (window.innerWidth <= 900) {
+      this.$refs.headerButton.addEventListener("click", this.closeSiderbar)
       for (const link of this.$refs.title) {
         link.$el.addEventListener("click", this.closeSiderbar)
       }
