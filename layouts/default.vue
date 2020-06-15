@@ -3,7 +3,7 @@
     <Header ref="headerComponent" />
     <section :style="OffsetMain" class="d-flex">
       <transition name="moveLeftShift">
-        <div :class="{ hide: !$store.state.sidebarStatus }" class="contentShift"></div>
+        <div :class="{ hide: !$store.state.sidebar.sidebarStatus }" class="contentShift"></div>
       </transition>
       <nuxt />
     </section>
