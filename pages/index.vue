@@ -13,6 +13,17 @@
       </b-row>
     </b-container>
     <b-button variant="success" @click="test">CLICK</b-button> <span style="color: white;"></span>
+    <transition name="showd">
+      <div class="chil" v-show="show">
+        <ul>
+          <li>
+            <nuxt-link ref="title" to="/">D</nuxt-link>
+            <nuxt-link ref="title" to="/">D</nuxt-link>
+            <nuxt-link ref="title" to="/">D</nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -20,15 +31,29 @@
 export default {
   data() {
     return {
-      data: null,
+      show: false,
     }
   },
   methods: {
     test() {
-      this.$store.commit("sidebarToggle")
+      this.show = !this.show
     },
   },
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.child {
+  height: 100%;
+  overflow: hidden;
+  background: red;
+}
+.showd-enter-active,
+.showd-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.showd-enter,
+.showd-leave-to {
+  height: 0;
+}
+</style>

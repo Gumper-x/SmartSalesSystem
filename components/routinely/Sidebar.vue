@@ -39,15 +39,17 @@
         <ul>
           <li v-for="(elem, Index) in menuMap" :key="Index" :class="{ active: elem.active }" class="droplist" @click="elem.active = !elem.active">
             <div class="title">
-              <span class="d-flex" :class="elem.iconClass">{{ elem.title }}</span>
+              <span class="d-flex align-items-center" :class="elem.iconClass">{{ elem.title }}</span>
             </div>
-            <b-collapse v-model="elem.active">
-              <ul>
-                <li v-for="(elemChild, index) in elem.childs" :key="index">
-                  <nuxt-link ref="title" :to="elemChild.url">{{ elemChild.name }}</nuxt-link>
-                </li>
-              </ul>
-            </b-collapse>
+            <transition name="slideList">
+              <div class="slide list" v-show="elem.active">
+                <ul>
+                  <li v-for="(elemChild, index) in elem.childs" :key="index">
+                    <nuxt-link ref="title" :to="elemChild.url">{{ elemChild.name }}</nuxt-link>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </li>
         </ul>
         <b-link to="/" class="d-flex align-items-center">
@@ -84,6 +86,7 @@ export default {
   },
   data() {
     return {
+      show: true,
       menuMap: {
         listGoodsAndServises: {
           title: "Товары и услуги",
@@ -289,6 +292,7 @@ aside {
               display: flex;
               align-items: center;
               justify-content: space-between;
+              padding: 2px 0;
               &::after {
                 content: "";
                 display: block;
@@ -301,9 +305,10 @@ aside {
             &.active div.title::after {
               transform: rotate(90deg);
             }
-            .collapse {
+            .list {
               margin-top: 3px;
               margin-left: 3px;
+
               li:last-child {
                 border-bottom: none;
                 margin-bottom: 0;
@@ -324,9 +329,16 @@ aside {
     }
   }
 }
-// @media screen and (max-width: 900px) {
-//   aside {
-//     display: none;
-//   }
-// }
+.slide {
+  overflow: hidden;
+  max-height: 400px;
+}
+.slideList-enter-active,
+.slideList-leave-active {
+  transition: max-height 0.3s ease-in-out;
+}
+.slideList-enter,
+.slideList-leave-to {
+  max-height: 0;
+}
 </style>

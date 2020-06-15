@@ -31,7 +31,7 @@
       <span class="title">Журнал документов</span>
 
       <b-button size="sm" variant="light" class="d-flex">
-        <span class="mr-1">Андрей Бережной</span>
+        <span class="mr-1 account-name">Андрей Бережной</span>
         <svg width="20" height="20" viewBox="0 0 44 50" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M21.875 25C28.7793 25 34.375 19.4043 34.375 12.5C34.375 5.5957 28.7793 0 21.875 0C14.9707 0 9.375 5.5957 9.375 12.5C9.375 19.4043 14.9707 25 21.875 25ZM30.625 28.125H28.9941C26.8262 29.1211 24.4141 29.6875 21.875 29.6875C19.3359 29.6875 16.9336 29.1211 14.7559 28.125H13.125C5.87891 28.125 0 34.0039 0 41.25V45.3125C0 47.9004 2.09961 50 4.6875 50H39.0625C41.6504 50 43.75 47.9004 43.75 45.3125V41.25C43.75 34.0039 37.8711 28.125 30.625 28.125Z"
@@ -83,7 +83,6 @@ section {
       transform: translateX(-100%);
     }
   }
-
   .opacityHide-enter-active,
   .opacityHide-leave-active {
     transition: opacity 0.3s ease-in-out;
@@ -116,7 +115,8 @@ section {
       backdrop-filter: saturate(180%) blur(5px);
       z-index: 1;
     }
-    h1 {
+    h1,
+    .account-name {
       display: none;
     }
   }
