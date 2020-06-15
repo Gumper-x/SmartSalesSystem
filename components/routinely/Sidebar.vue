@@ -76,6 +76,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex"
+
 export default {
   name: "Sidebar",
   props: {
@@ -225,9 +227,9 @@ export default {
         }
       }
     },
-    closeSiderbar() {
-      this.$store.commit("sidebarToggle")
-    },
+    ...mapMutations({
+      closeSiderbar: "sidebar/sidebarToggle",
+    }),
   },
 }
 </script>
