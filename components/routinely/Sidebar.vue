@@ -39,10 +39,10 @@
         <ul>
           <li v-for="(elem, Index) in menuMap" :key="Index" :class="{ active: elem.active }" class="droplist" @click="elem.active = !elem.active">
             <div class="title">
-              <span class="d-flex align-items-center" :class="elem.iconClass">{{ elem.title }}{{ elem.childs.length }}</span>
+              <span class="d-flex align-items-center" :class="elem.iconClass">{{ elem.title }}</span>
             </div>
             <transition name="slideList">
-              <div v-show="elem.active" class="slide list" :style="{ '--animation-order': 32.5 * elem.childs.length + 'px' }">
+              <div v-show="elem.active" class="slide list" :style="{ '--animation-order': 33 * (elem.childs.length - 1) + 29 + 'px' }">
                 <ul>
                   <li v-for="(elemChild, index) in elem.childs" :key="index">
                     <nuxt-link ref="title" :to="elemChild.url">{{ elemChild.name }}</nuxt-link>
@@ -236,7 +236,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~/assets/init-icon-header";
-$aside: rgba(244, 245, 246, 0.8);
+$aside: #f4f5f6;
 aside {
   position: fixed;
   background: $aside;
@@ -250,8 +250,8 @@ aside {
     .header-aside {
       position: sticky;
       top: 0;
-      background: $aside;
-      // backdrop-filter: saturate(180%) blur(20px);
+      background: rgba(244, 245, 246, 0.9);
+      // backdrop-filter: saturate(180%) blsur(20px);
       z-index: 10;
       .icon-home {
         content: "";
@@ -278,7 +278,7 @@ aside {
           a {
             display: block;
             width: 100%;
-            height: 100%;
+            height: 28px;
             padding: 4px;
             padding-top: 0;
             color: var(--text);
@@ -312,7 +312,7 @@ aside {
               margin-left: 3px;
 
               li:last-child {
-                border-bottom: none;
+                border-bottom: 1px solid transparent;
                 margin-bottom: 0;
               }
               a {
@@ -328,6 +328,11 @@ aside {
           }
         }
       }
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .navigation nav ul li {
+      width: 280px;
     }
   }
 }
