@@ -77,16 +77,16 @@ export default {
       }
     },
   },
-  methods: {
-    ...mapMutations({
-      sidebarToggle: "sidebar/sidebarToggle",
-    }),
-  },
   mounted() {
     if (window.innerWidth > 900) {
       this.sidebarToggle()
     }
     this.sidebarOffset = `padding-top: ${this.$refs.header.clientHeight}px`
+  },
+  methods: {
+    ...mapMutations({
+      sidebarToggle: "sidebar/sidebarToggle",
+    }),
   },
 }
 </script>
@@ -109,7 +109,7 @@ section {
   }
   header {
     background: rgba(244, 245, 246, 0.9);
-    backdrop-filter: saturate(180%) blur(20px);
+    // backdrop-filter: saturate(180%) blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     h1 {
       font-size: 22px;
@@ -156,6 +156,7 @@ section {
             transform: translateY(-50%) translateX(-5px);
             transition: transform 0.5s, opacity 0.5s;
           }
+          &:focus::before,
           &:hover::before {
             content: "";
             position: absolute;
@@ -189,7 +190,7 @@ section {
     .area-nonaside {
       position: fixed;
       background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: saturate(180%) blur(5px);
+      // backdrop-filter: saturate(180%) blur(5px);
       z-index: 1;
     }
     h1,

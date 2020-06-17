@@ -4,5 +4,8 @@ export default function(context) {
       email: "eve.holt@reqres.in",
       password: "cityslicka",
     })
-    .then(res => console.log(res))
+    .then(res => init(res))
+  function init(token) {
+    console.log(token)
+  }
 }

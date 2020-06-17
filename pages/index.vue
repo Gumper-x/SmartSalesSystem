@@ -14,7 +14,7 @@
     </b-container>
     <b-button variant="success" @click="test">CLICK</b-button> <span style="color: white;"></span>
     <transition name="showd">
-      <div class="chil" v-show="show">
+      <div v-show="show" class="chil">
         <ul>
           <li>
             <nuxt-link ref="title" to="/">D</nuxt-link>

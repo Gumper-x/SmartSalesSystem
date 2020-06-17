@@ -30,8 +30,10 @@
 <script>
 import axios from "axios"
 import qs from "qs"
+console.log(process.server)
 
 export default {
+  layout: "clear",
   data() {
     return {
       data: null,

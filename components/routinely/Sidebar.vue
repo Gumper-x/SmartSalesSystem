@@ -2,7 +2,7 @@
   <aside class="h-100" :style="offset">
     <section class="navigation">
       <div class="header-aside d-flex justify-content-start pt-1 pb-1 pr-2 pl-2">
-        <b-button size="sm" variant="light" class="mr-1" ref="headerButton">
+        <b-button ref="headerButton" size="sm" variant="light" class="mr-1">
           <b-link to="/" class="icon-home"></b-link>
         </b-button>
         <b-button size="sm" variant="light" @click="closeAllList">
@@ -39,10 +39,10 @@
         <ul>
           <li v-for="(elem, Index) in menuMap" :key="Index" :class="{ active: elem.active }" class="droplist" @click="elem.active = !elem.active">
             <div class="title">
-              <span class="d-flex align-items-center" :class="elem.iconClass">{{ elem.title }}</span>
+              <span class="d-flex align-items-center" :class="elem.iconClass">{{ elem.title }}{{ elem.childs.length }}</span>
             </div>
             <transition name="slideList">
-              <div class="slide list" v-show="elem.active">
+              <div v-show="elem.active" class="slide list" :style="{ '--animation-order': 32.5 * elem.childs.length + 'px' }">
                 <ul>
                   <li v-for="(elemChild, index) in elem.childs" :key="index">
                     <nuxt-link ref="title" :to="elemChild.url">{{ elemChild.name }}</nuxt-link>
@@ -240,7 +240,7 @@ $aside: rgba(244, 245, 246, 0.8);
 aside {
   position: fixed;
   background: $aside;
-  backdrop-filter: saturate(180%) blur(20px);
+  // backdrop-filter: saturate(180%) blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
   transition: 0.2s ease-in-out;
@@ -251,7 +251,7 @@ aside {
       position: sticky;
       top: 0;
       background: $aside;
-      backdrop-filter: saturate(180%) blur(20px);
+      // backdrop-filter: saturate(180%) blur(20px);
       z-index: 10;
       .icon-home {
         content: "";
@@ -333,11 +333,11 @@ aside {
 }
 .slide {
   overflow: hidden;
-  max-height: 400px;
+  max-height: var(--animation-order);
 }
 .slideList-enter-active,
 .slideList-leave-active {
-  transition: max-height 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .slideList-enter,
 .slideList-leave-to {
