@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  name: "Home",
   data() {
     return {
       show: false,
@@ -38,6 +39,11 @@ export default {
     test() {
       this.show = !this.show
     },
+  },
+  head() {
+    return {
+      title: "Главная",
+    }
   },
 }
 </script>

@@ -27,7 +27,6 @@
         </b-button>
         <Logo />
       </div>
-      <span class="text-success">{{ $store.state.token }}</span>
       <span class="title">Журнал документов</span>
 
       <b-button size="sm" variant="light" class="d-flex position-relative account-btn">
@@ -82,19 +81,20 @@ export default {
   },
   mounted() {
     if (window.innerWidth > 900) {
-      this.sidebarToggle()
+      this.sidebarOpen()
     }
     this.sidebarOffset = `padding-top: ${this.$refs.header.clientHeight}px`
   },
   methods: {
     ...mapMutations({
       sidebarToggle: "sidebar/sidebarToggle",
+      sidebarOpen: "sidebar/sidebarOpen",
       setToken: "setToken",
     }),
     logout() {
       Cookie.remove("accessToken")
       this.setToken(null)
-      this.$router.go({ path: "/auth/login" })
+      this.$router.replace({ path: "/auth/login" })
     },
   },
 }
@@ -147,26 +147,33 @@ section {
           padding: 8px 10px;
           border-bottom: 1px solid #dddddd;
           white-space: nowrap;
+          transition: all 0.5s;
           &::before {
             content: "";
             opacity: 0;
             transform: translateY(-50%) translateX(-5px);
             transition: transform 0.5s, opacity 0.5s;
           }
-          &:focus::before,
-          &:hover::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%) translateX(0);
-            background: #2889f8;
-            box-shadow: 1px 0 4px rgba(40, 137, 248, 0.4);
-            height: 8px;
-            width: 4px;
-            border-radius: 0 10px 10px 0;
-            opacity: 1;
-            transition: transform 0.5s, opacity 0.5s;
+          &:focus,
+          &:hover {
+            background: #f5f6f8;
+            &::before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 0;
+              transform: translateY(-50%) translateX(0);
+              background: #2889f8;
+              box-shadow: 1px 0 4px rgba(40, 137, 248, 0.4);
+              height: 8px;
+              width: 4px;
+              border-radius: 0 10px 10px 0;
+              opacity: 1;
+              transition: transform 0.5s, opacity 0.5s;
+            }
+          }
+          &:active {
+            background: #ebeef0;
           }
           span.account-name-in-menu::before {
             content: "Имя: ";

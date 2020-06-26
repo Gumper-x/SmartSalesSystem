@@ -68,8 +68,6 @@
           </svg>
           Помощь
         </b-link>
-        <b-link to="/auth/login" exact-active-class>Login</b-link>
-        <b-link to="/auth/registration" exact-active-class>Registeation</b-link>
       </nav>
     </section>
   </aside>

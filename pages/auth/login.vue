@@ -4,7 +4,7 @@
     <transition name="scale">
       <span v-show="errorRequestStatus" class="error-request text-center text-danger">Неверный логин или пароль!</span>
     </transition>
-    <b-form @submit.prevent="onSubmit" :class="{ shake: activeShake }">
+    <b-form :class="{ shake: activeShake }" @submit.prevent="onSubmit">
       <b-form-group id="input-group-1" label="Логин:" label-for="input-1">
         <b-form-input id="input-1" v-model="form.email" type="text" required placeholder="Логин" maxlength="32" trim></b-form-input>
         <button type="button" class="clear d-flex">
@@ -19,7 +19,7 @@
       </b-form-group>
 
       <b-form-group id="input-group-2" label="Пароль:" label-for="input-2">
-        <b-form-input id="input-2" v-model="form.password" required placeholder="Пароль" type="password"></b-form-input>
+        <b-form-input id="input-2" v-model="form.password" required placeholder="Пароль" type="password" maxlength="32"></b-form-input>
         <button type="button" class="clear d-flex">
           <transition name="fade">
             <svg v-show="form.password !== ''" viewBox="0 0 365.696 365.696" xmlns="http://www.w3.org/2000/svg" @click="form.password = ''">
@@ -77,11 +77,9 @@ export default {
           this.submitButtonVariant = "success"
           Cookie.set("accessToken", res.data.token)
           this.$store.commit("setToken", res.data.token)
-          setTimeout(() => this.$router.go({ path: "/" }), 100)
-          // this.$router.go({ path: "/" })
+          setTimeout(() => this.$router.replace({ path: "/" }), 100)
         })
         .catch(e => {
-          console.log(e)
           this.errorRequestStatus = true
           this.submitButtonVariant = "danger"
           this.requsetAwait = false
@@ -95,7 +93,8 @@ export default {
       title: "Авторизация",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: "description", name: "description", content: "My custom description" },
+        { hid: "robots", name: "robots", content: "index, follow" },
+        { hid: "description", name: "description", content: "Autorisation Page" },
       ],
     }
   },
