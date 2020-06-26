@@ -1,4 +1,4 @@
-# SmartSalesSystemD
+# SmartSalesSystem
 
 > My pioneering Nuxt.js project
 
