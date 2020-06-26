@@ -33,7 +33,6 @@ export default {
   --context: #f03030;
 }
 html {
-  font-family: "Roboto", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -71,19 +70,17 @@ html {
 }
 
 body {
-  background: #ffffff;
+  background: #f5f6f8;
   font-family: "Roboto", Arial, sans-serif;
   color: var(--text);
-  height: 2000px;
 }
 .contentShift {
-  min-width: 316px;
+  min-width: 322px;
   transition: min-width 0.3s ease-in-out;
 }
 .contentShift.hide {
   min-width: 0;
 }
-
 @media screen and (max-width: 900px) {
   .contentShift {
     display: none;

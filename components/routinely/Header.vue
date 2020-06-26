@@ -25,9 +25,9 @@
             />
           </svg>
         </b-button>
-        <!-- Create cube with 3 sides and animate in "SmartSalesSystem" -->
-        <h1 class="logo pl-1 pr-1"><nuxt-link to="/" class="text-reset text-decoration-none">SmartSalesSystem</nuxt-link></h1>
+        <Logo />
       </div>
+      <span class="text-success">{{ $store.state.token }}</span>
       <span class="title">Журнал документов</span>
 
       <b-button size="sm" variant="light" class="d-flex position-relative account-btn">
@@ -41,7 +41,7 @@
           <ul>
             <li><span class="account-name-in-menu">Андрей Бережной</span></li>
             <li>Настройки</li>
-            <li>Выйти</li>
+            <li @click="logout">Выйти</li>
           </ul>
         </div>
       </b-button>
@@ -52,11 +52,14 @@
 <script>
 import { mapState, mapMutations } from "vuex"
 import Sidebar from "~/components/routinely/Sidebar"
+import Logo from "~/components/Logo"
+const Cookie = process.client ? require("js-cookie") : undefined
 
 export default {
   name: "Header",
   components: {
     Sidebar,
+    Logo,
   },
   data() {
     return {
@@ -86,7 +89,13 @@ export default {
   methods: {
     ...mapMutations({
       sidebarToggle: "sidebar/sidebarToggle",
+      setToken: "setToken",
     }),
+    logout() {
+      Cookie.remove("accessToken")
+      this.setToken(null)
+      this.$router.go({ path: "/auth/login" })
+    },
   },
 }
 </script>
@@ -111,18 +120,6 @@ section {
     background: rgba(244, 245, 246, 0.9);
     // backdrop-filter: saturate(180%) blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    h1 {
-      font-size: 22px;
-      margin-bottom: 0.2rem;
-      transition: 0.3s ease-in-out;
-      &.logo {
-        border-radius: 10px;
-        border-bottom: 3px solid #dd2d2d;
-      }
-      &:hover {
-        color: #3d3d3d;
-      }
-    }
     .account-menu {
       opacity: 0;
       visibility: hidden;

@@ -1,11 +1,9 @@
-export default function(context) {
-  context.$axios
-    .$post("https://reqres.in/api/login", {
-      email: "eve.holt@reqres.in",
-      password: "cityslicka",
-    })
-    .then(res => init(res))
-  function init(token) {
-    console.log(token)
+export default function({ store, redirect, route }) {
+  const routeArea = route.name.split("-")[0]
+
+  if (routeArea !== "auth" && !store.state.token) {
+    return redirect("/auth/login")
+  } else if (store.state.token && routeArea === "auth") {
+    return redirect("/")
   }
 }

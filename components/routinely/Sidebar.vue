@@ -45,14 +45,14 @@
               <div v-show="elem.active" class="slide list" :style="{ '--animation-order': 33 * (elem.childs.length - 1) + 29 + 'px' }">
                 <ul>
                   <li v-for="(elemChild, index) in elem.childs" :key="index">
-                    <nuxt-link ref="title" :to="elemChild.url">{{ elemChild.name }}</nuxt-link>
+                    <n-link ref="title" :to="elemChild.url" :prefetch="false">{{ elemChild.name }}</n-link>
                   </li>
                 </ul>
               </div>
             </transition>
           </li>
         </ul>
-        <b-link to="/" class="d-flex align-items-center">
+        <b-link to="/info" class="d-flex align-items-center">
           <svg
             class="bi bi-info-circle-fill mr-1"
             width="1em"
@@ -251,7 +251,7 @@ aside {
       position: sticky;
       top: 0;
       background: rgba(244, 245, 246, 0.9);
-      // backdrop-filter: saturate(180%) blsur(20px);
+      // backdrop-filter: saturate(180%) blur(20px);
       z-index: 10;
       .icon-home {
         content: "";
@@ -342,7 +342,7 @@ aside {
 }
 .slideList-enter-active,
 .slideList-leave-active {
-  transition: all 0.2s ease-in-out;
+  transition: max-height 0.2s ease-in-out;
 }
 .slideList-enter,
 .slideList-leave-to {

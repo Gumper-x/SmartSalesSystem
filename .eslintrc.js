@@ -21,5 +21,6 @@ module.exports = {
   rules: {
     'nuxt/no-cjs-in-config': 'off',
     'no-console': 'off',
+    'no-unused-vars': 'off',
   }
 }

@@ -10,10 +10,11 @@ module.exports = {
     htmlAttrs: {
       lang: "ru",
     },
-    title: process.env.npm_package_name || "",
+    title: process.env.npm_package_name || "SmartSalesSystem",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "keyword", name: "SmartSalesSystem", content: "yoyo" },
       {
         hid: "description",
         name: "description",
@@ -65,7 +66,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: "https://reqres.in/",
+  },
   /*
    ** Build configuration
    */
