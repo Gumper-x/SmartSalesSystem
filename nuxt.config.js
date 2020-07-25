@@ -68,7 +68,8 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "https://reqres.in/",
+    baseURL: "https://app.bs-soft.org.ua/raz/hs/api/",
+    credentials: false,
   },
   /*
    ** Build configuration

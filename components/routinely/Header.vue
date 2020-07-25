@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock"
 import { mapState, mapMutations } from "vuex"
 import Sidebar from "~/components/routinely/Sidebar"
 import Logo from "~/components/Logo"
@@ -72,10 +73,15 @@ export default {
   },
   watch: {
     sidebarStatus(val) {
-      if (window.innerWidth <= 900 && val === true) {
-        document.documentElement.style.overflow = "hidden"
-      } else {
-        document.documentElement.style.overflow = "auto"
+      if (window.innerWidth <= 900) {
+        switch (val) {
+          case true:
+            disableBodyScroll()
+            break
+          case false:
+            enableBodyScroll()
+            break
+        }
       }
     },
   },

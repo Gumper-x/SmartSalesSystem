@@ -6,80 +6,34 @@
     </transition>
     <b-form :class="{ shake: activeShake }" @submit.prevent="onSubmit">
       <!-- Input Email -->
-      <b-form-group id="input-group-1" label-for="input-1">
+      <b-form-group id="input-group-1" label-for="input-email">
         <template v-slot:label
           ><div class="d-flex justify-content-between align-items-center pr-2">
             Email:<span class="clear-btn" @click="cleanOut">Очистить</span>
           </div></template
         >
-        <b-form-input id="input-1" v-model="form.email" type="email" required placeholder="example.@email.com" maxlength="32" trim></b-form-input>
-
-        <button type="button" class="clear d-flex">
-          <transition name="fade">
-            <svg v-show="form.email !== ''" viewBox="0 0 365.696 365.696" xmlns="http://www.w3.org/2000/svg" type="button" @click="form.email = ''">
-              <path
-                d="m243.1875 182.859375 113.132812-113.132813c12.5-12.5 12.5-32.765624 0-45.246093l-15.082031-15.082031c-12.503906-12.503907-32.769531-12.503907-45.25 0l-113.128906 113.128906-113.132813-113.152344c-12.5-12.5-32.765624-12.5-45.246093 0l-15.105469 15.082031c-12.5 12.503907-12.5 32.769531 0 45.25l113.152344 113.152344-113.128906 113.128906c-12.503907 12.503907-12.503907 32.769531 0 45.25l15.082031 15.082031c12.5 12.5 32.765625 12.5 45.246093 0l113.132813-113.132812 113.128906 113.132812c12.503907 12.5 32.769531 12.5 45.25 0l15.082031-15.082031c12.5-12.503906 12.5-32.769531 0-45.25zm0 0"
-              />
-            </svg>
-          </transition>
-        </button>
+        <AppInput id="input-email" v-model="form.email" type="email" placeholder="example.@email.com" maxlength="50" required />
       </b-form-group>
       <!-- Input name company -->
-      <b-form-group id="input-group-1" label="Название организации:" label-for="input-1">
-        <b-form-input id="input-1" v-model="form.company" type="text" required placeholder="Моя компания" maxlength="32" trim></b-form-input>
-        <button type="button" class="clear d-flex">
-          <transition name="fade">
-            <svg
-              v-show="form.company !== ''"
-              viewBox="0 0 365.696 365.696"
-              xmlns="http://www.w3.org/2000/svg"
-              type="button"
-              @click="form.company = ''"
-            >
-              <path
-                d="m243.1875 182.859375 113.132812-113.132813c12.5-12.5 12.5-32.765624 0-45.246093l-15.082031-15.082031c-12.503906-12.503907-32.769531-12.503907-45.25 0l-113.128906 113.128906-113.132813-113.152344c-12.5-12.5-32.765624-12.5-45.246093 0l-15.105469 15.082031c-12.5 12.503907-12.5 32.769531 0 45.25l113.152344 113.152344-113.128906 113.128906c-12.503907 12.503907-12.503907 32.769531 0 45.25l15.082031 15.082031c12.5 12.5 32.765625 12.5 45.246093 0l113.132813-113.132812 113.128906 113.132812c12.503907 12.5 32.769531 12.5 45.25 0l15.082031-15.082031c12.5-12.503906 12.5-32.769531 0-45.25zm0 0"
-              />
-            </svg>
-          </transition>
-        </button>
+      <b-form-group id="input-group-1" label="Название организации:" label-for="input-company">
+        <AppInput id="input-company" v-model="form.company" type="text" placeholder="Моя компания" maxlength="50" required />
       </b-form-group>
       <!-- Input number phone -->
-      <b-form-group id="input-group-1" label="Телефон:" label-for="input-1">
-        <b-form-input id="input-1" v-model="form.phone" type="text" required placeholder="+380665257491" maxlength="32" trim></b-form-input>
-        <button type="button" class="clear d-flex">
-          <transition name="fade">
-            <svg v-show="form.phone !== ''" viewBox="0 0 365.696 365.696" xmlns="http://www.w3.org/2000/svg" type="button" @click="form.phone = ''">
-              <path
-                d="m243.1875 182.859375 113.132812-113.132813c12.5-12.5 12.5-32.765624 0-45.246093l-15.082031-15.082031c-12.503906-12.503907-32.769531-12.503907-45.25 0l-113.128906 113.128906-113.132813-113.152344c-12.5-12.5-32.765624-12.5-45.246093 0l-15.105469 15.082031c-12.5 12.503907-12.5 32.769531 0 45.25l113.152344 113.152344-113.128906 113.128906c-12.503907 12.503907-12.503907 32.769531 0 45.25l15.082031 15.082031c12.5 12.5 32.765625 12.5 45.246093 0l113.132813-113.132812 113.128906 113.132812c12.503907 12.5 32.769531 12.5 45.25 0l15.082031-15.082031c12.5-12.503906 12.5-32.769531 0-45.25zm0 0"
-              />
-            </svg>
-          </transition>
-        </button>
+      <b-form-group id="input-group-1" label="Телефон:" label-for="input-phone">
+        <AppInput id="input-phone" v-model="form.phone" type="text" placeholder="+380665257491" maxlength="50" required />
       </b-form-group>
       <!-- Input country -->
-      <b-form-group id="input-group-1" label="Страна:" label-for="input-1">
-        <b-form-input id="input-1" v-model="form.country" type="text" required placeholder="Ваша страна" maxlength="32" trim></b-form-input>
-        <button type="button" class="clear d-flex">
-          <transition name="fade">
-            <svg
-              v-show="form.country !== ''"
-              viewBox="0 0 365.696 365.696"
-              xmlns="http://www.w3.org/2000/svg"
-              type="button"
-              @click="form.country = ''"
-            >
-              <path
-                d="m243.1875 182.859375 113.132812-113.132813c12.5-12.5 12.5-32.765624 0-45.246093l-15.082031-15.082031c-12.503906-12.503907-32.769531-12.503907-45.25 0l-113.128906 113.128906-113.132813-113.152344c-12.5-12.5-32.765624-12.5-45.246093 0l-15.105469 15.082031c-12.5 12.503907-12.5 32.769531 0 45.25l113.152344 113.152344-113.128906 113.128906c-12.503907 12.503907-12.503907 32.769531 0 45.25l15.082031 15.082031c12.5 12.5 32.765625 12.5 45.246093 0l113.132813-113.132812 113.128906 113.132812c12.503907 12.5 32.769531 12.5 45.25 0l15.082031-15.082031c12.5-12.503906 12.5-32.769531 0-45.25zm0 0"
-              />
-            </svg>
-          </transition>
-        </button>
+      <b-form-group id="input-group-1" label="Страна:" label-for="input-country">
+        <AppInput id="input-country" v-model="form.country" type="text" placeholder="Ваша страна" maxlength="50" required />
       </b-form-group>
+      <!-- Discription how worck registration -->
       <p class="discription text-muted pl-1">После успешной регистрации, на указанную электронную почту прийдет информация с логином и паролем.</p>
+      <!-- Button Submit -->
       <b-overlay :show="requsetAwait" rounded="sm" opacity="0.5" blur="0" spinner-small spinner-variant="primary">
         <b-button type="submit" :variant="submitButtonVariant" class="w-100">Регистрация</b-button>
       </b-overlay>
     </b-form>
+    <!-- Alternate links -->
     <div class="d-flex justify-content-between p-2">
       <b-link :to="{ path: '/auth/recover' }">Забыли аккаунт?</b-link>
       <b-link :to="{ path: '/auth/login' }">Войти</b-link>
@@ -89,11 +43,15 @@
 
 <script>
 import qs from "qs"
+import AppInput from "@/components/ui/AppInput"
 const Cookie = process.client ? require("js-cookie") : undefined
 
 export default {
   name: "Login",
   layout: "clear",
+  components: {
+    AppInput,
+  },
   data() {
     return {
       errorRequestStatus: false,
@@ -156,7 +114,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .wrapper-form {
   width: 100%;
   max-width: 400px;
@@ -175,43 +133,17 @@ export default {
       backface-visibility: hidden;
       perspective: 1000px;
     }
-    div.bv-no-focus-ring {
-      position: relative;
-      button.clear {
-        position: absolute;
-        top: 50%;
-        right: 0.75rem;
-        transform: translateY(-50%);
-        border: none;
-        outline: none;
-        padding: 0;
-        background: none;
-        svg {
-          width: 12px;
-          height: 12px;
-          path {
-            fill: #3488e3;
-            transition: fill 0.1s;
-          }
-        }
-        &:hover {
-          svg path {
-            fill: #237ad8;
-          }
-        }
-      }
+  }
+  .clear-btn {
+    font-size: 11px;
+    cursor: pointer;
+    color: #007bff;
+    &:hover {
+      color: #dc1461;
     }
-    .clear-btn {
-      font-size: 11px;
-      cursor: pointer;
-      color: #007bff;
-      &:hover {
-        color: #dc1461;
-      }
-    }
-    .discription {
-      font-size: 11px;
-    }
+  }
+  .discription {
+    font-size: 11px;
   }
 }
 @keyframes shake {
@@ -235,15 +167,6 @@ export default {
   60% {
     transform: translate3d(4px, 0, 0);
   }
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.1s ease-in-out;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-  transform: scale(0.3);
 }
 .scale-enter-active,
 .scale-leave-active {

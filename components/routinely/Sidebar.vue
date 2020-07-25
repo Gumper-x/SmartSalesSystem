@@ -52,7 +52,7 @@
             </transition>
           </li>
         </ul>
-        <b-link to="/info" class="d-flex align-items-center">
+        <b-link to="/info" class="d-flex align-items-center" @click="closeSiderbar">
           <svg
             class="bi bi-info-circle-fill mr-1"
             width="1em"
@@ -93,7 +93,7 @@ export default {
           active: false,
           iconClass: "icon-GoodsAndServises",
           childs: [
-            { name: "Номенклатура", url: "/" },
+            { name: "Номенклатура", url: "/nomenclature" },
             { name: "Группы номенклатуры", url: "/" },
           ],
         },
@@ -129,7 +129,7 @@ export default {
         listPurchase: {
           title: "Закупки",
           active: false,
-          iconClass: "icon-Budget",
+          iconClass: "icon-Purchase",
           childs: [
             { name: "Приход товара", url: "/" },
             { name: "Возврат товара поставщику", url: "/" },
@@ -243,7 +243,7 @@ aside {
   z-index: 10;
   transition: 0.2s ease-in-out;
   .navigation {
-    overflow-y: auto;
+    overflow: hidden auto;
     height: 100%;
     .header-aside {
       position: sticky;

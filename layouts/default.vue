@@ -47,6 +47,8 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+  scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.1);
+  scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
@@ -73,6 +75,7 @@ body {
   background: #f5f6f8;
   font-family: "Roboto", Arial, sans-serif;
   color: var(--text);
+  height: 2000px;
 }
 .contentShift {
   min-width: 322px;
