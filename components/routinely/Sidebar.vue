@@ -241,7 +241,7 @@ aside {
   // backdrop-filter: saturate(180%) blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
   .navigation {
     overflow: hidden auto;
     height: 100%;

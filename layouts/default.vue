@@ -1,9 +1,15 @@
 <template>
   <div>
+    <transition name="sidebarToggle">
+      <Sidebar v-show="sidebarStatus" :offset="sidebarOffset" />
+    </transition>
+    <transition name="opacityHide">
+      <div v-show="sidebarStatus" class="area-nonaside h-100 w-100" @click="sidebarToggle"></div>
+    </transition>
     <Header ref="headerComponent" />
-    <section :style="OffsetMain" class="d-flex">
-      <transition name="moveLeftShift">
-        <div :class="{ hide: !$store.state.sidebar.sidebarStatus }" class="contentShift"></div>
+    <section class="d-flex">
+      <transition name="resizeShift">
+        <div v-show="$store.state.sidebar.sidebarStatus" class="contentShift"></div>
       </transition>
       <nuxt />
     </section>
@@ -11,18 +17,55 @@
 </template>
 
 <script>
-import Header from "~/components/routinely/Header"
+// Vuex
+import { mapState, mapMutations } from "vuex"
+// Libraries
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock"
+// @Compnents
+import Header from "@/components/routinely/Header"
+import Sidebar from "@/components/routinely/Sidebar"
+
 export default {
   components: {
     Header,
+    Sidebar,
   },
   data() {
     return {
-      OffsetMain: null,
+      sidebarOffset: null,
     }
   },
+  computed: {
+    ...mapState({
+      sidebarStatus: state => state.sidebar.sidebarStatus,
+    }),
+  },
+  watch: {
+    sidebarStatus(val) {
+      if (window.innerWidth <= 900) {
+        switch (val) {
+          case true:
+            disableBodyScroll()
+            break
+          case false:
+            enableBodyScroll()
+            break
+        }
+      }
+    },
+  },
   mounted() {
-    this.OffsetMain = `padding-top: ${this.$refs.headerComponent.$refs.header.clientHeight}px`
+    if (window.innerWidth > 900) {
+      this.sidebarOpen()
+    }
+    console.log(this.$refs)
+    this.sidebarOffset = `padding-top: ${this.$refs.headerComponent.$el.clientHeight}px`
+  },
+  methods: {
+    ...mapMutations({
+      sidebarToggle: "sidebar/sidebarToggle",
+      sidebarOpen: "sidebar/sidebarOpen",
+    }),
   },
 }
 </script>
@@ -75,18 +118,54 @@ body {
   background: #f5f6f8;
   font-family: "Roboto", Arial, sans-serif;
   color: var(--text);
-  height: 2000px;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0;
 }
 .contentShift {
   min-width: 322px;
+}
+/* Transition for shiftBar */
+.resizeShift-enter-active,
+.resizeShift-leave-active {
   transition: min-width 0.3s ease-in-out;
 }
-.contentShift.hide {
+.resizeShift-enter,
+.resizeShift-leave-to {
   min-width: 0;
 }
+
+/* Transition for SideBar */
+.sidebarToggle-enter-active,
+.sidebarToggle-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+.sidebarToggle-enter,
+.sidebarToggle-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Transition for area-nonaside */
+.opacityHide-enter-active,
+.opacityHide-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.opacityHide-enter,
+.opacityHide-leave-to {
+  opacity: 0;
+}
+
 @media screen and (max-width: 900px) {
   .contentShift {
     display: none;
+  }
+  .area-nonaside {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.2);
+    /* backdrop-filter: saturate(180%) blur(5px); */
+    z-index: 1;
   }
 }
 </style>
