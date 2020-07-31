@@ -54,21 +54,21 @@ export default {
         login: this.form.email,
         password: this.form.password,
       }
-      const request = await this.$axios({
+      const { data } = await this.$axios({
         method: "POST",
         url: `/login`,
         data: qs(dataForm),
       })
       this.requsetAwait = false
-      if (request.data.token !== undefined && request.data.token !== null && request.data.token !== "") {
-        const successToken = request.data.token
+      if (data.token !== undefined && data.token !== null && data.token !== "") {
+        const successToken = data.token
         this.errorRequestStatus = false
         this.submitButtonVariant = "success"
 
         Cookie.set("accessToken", successToken)
         this.$store.commit("setToken", successToken)
         setTimeout(() => this.$router.replace({ path: "/" }), 100)
-      } else if (request.data.error === "100") {
+      } else if (data.error === "100") {
         this.errorRequestStatus = true
         this.submitButtonVariant = "danger"
         this.activeShake = true

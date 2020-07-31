@@ -1,16 +1,11 @@
 <template>
   <div>
-    <transition name="sidebarToggle">
-      <Sidebar v-show="sidebarStatus" :offset="sidebarOffset" />
-    </transition>
+    <Sidebar class="sidebar" :class="{ hide: !sidebarStatus }" :offset="sidebarOffset" />
     <transition name="opacityHide">
       <div v-show="sidebarStatus" class="area-nonaside h-100 w-100" @click="sidebarToggle"></div>
     </transition>
     <Header ref="headerComponent" />
-    <section class="d-flex">
-      <transition name="resizeShift">
-        <div v-show="$store.state.sidebar.sidebarStatus" class="contentShift"></div>
-      </transition>
+    <section id="content" :class="{ contentShift: $store.state.sidebar.sidebarStatus }">
       <nuxt />
     </section>
   </div>
@@ -58,7 +53,6 @@ export default {
     if (window.innerWidth > 900) {
       this.sidebarOpen()
     }
-    console.log(this.$refs)
     this.sidebarOffset = `padding-top: ${this.$refs.headerComponent.$el.clientHeight}px`
   },
   methods: {
@@ -123,28 +117,17 @@ body {
   margin-right: 0;
   margin-left: 0;
 }
-.contentShift {
-  min-width: 322px;
-}
 /* Transition for shiftBar */
-.resizeShift-enter-active,
-.resizeShift-leave-active {
-  transition: min-width 0.3s ease-in-out;
+#content {
+  transition: padding-left 0.3s ease-in-out;
 }
-.resizeShift-enter,
-.resizeShift-leave-to {
-  min-width: 0;
+.contentShift {
+  padding-left: 322px !important;
 }
 
 /* Transition for SideBar */
-.sidebarToggle-enter-active,
-.sidebarToggle-leave-active {
-  transition: transform 0.3s ease-in-out;
-}
-.sidebarToggle-enter,
-.sidebarToggle-leave-to {
+.hide {
   transform: translateX(-100%);
-  opacity: 0;
 }
 
 /* Transition for area-nonaside */
@@ -159,7 +142,7 @@ body {
 
 @media screen and (max-width: 900px) {
   .contentShift {
-    display: none;
+    padding-left: 0 !important;
   }
   .area-nonaside {
     position: fixed;

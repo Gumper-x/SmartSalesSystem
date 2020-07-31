@@ -118,7 +118,7 @@ export default {
         listSales: {
           title: "Продажи",
           active: false,
-          iconClass: "icon-Budget",
+          iconClass: "icon-Sales",
           childs: [
             { name: "Заказ покупателя", url: "/" },
             { name: "Продажа товара/услуги", url: "/" },
@@ -139,7 +139,7 @@ export default {
         listPurse: {
           title: "Деньги",
           active: false,
-          iconClass: "icon-Budget",
+          iconClass: "icon-Purse",
           childs: [
             { name: "Касса и банковские счета", url: "/" },
             { name: "Оплата", url: "/" },
@@ -149,7 +149,7 @@ export default {
         listStore: {
           title: "Склад",
           active: false,
-          iconClass: "icon-Budget",
+          iconClass: "icon-Store",
           childs: [
             { name: "Склад/ места хранения", url: "/" },
             { name: "Оприходование товара", url: "/" },
@@ -180,7 +180,7 @@ export default {
         listControl: {
           title: "Администрирование",
           active: false,
-          iconClass: "icon-Reports",
+          iconClass: "icon-Control",
           childs: [
             { name: "Пользователи", url: "/" },
             { name: "Отчет по пользователю", url: "/" },
@@ -233,7 +233,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/init-icon-header";
+@import "~/assets/icon-sidebar";
 $aside: #f4f5f6;
 aside {
   position: fixed;
